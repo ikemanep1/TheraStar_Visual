@@ -1,26 +1,53 @@
 import React from 'react';
-import logo from './logo.svg';
+import Nav from './components/Nav';
+import Error404 from './components/Error404';
+import {Switch, Route} from 'react-router-dom';
+import {Button} from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Moment from 'moment';
+import {Link} from "react-router-dom";
 import './App.css';
 
-function App() {
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+    };
+
+  render() {
+    const headerStyle = {
+      textAlign: "center",
+      width: "60%",
+      backgroundColor: "#4e504d",
+      padding: "20px",
+      display: "flex",
+      justifyContent: "center",
+      marginLeft: "20%",
+      marginRight: "20%",
+      marginTop: "20px",
+      border: "3px solid #ff751a",
+    }
+    const buttonStyle = {
+      border: "3px solid #ff751a",
+      color: "white",
+      backgroundColor: "#cc0000",
+      marginLeft: "10px"
+    }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <header style={headerStyle} className="App-header">
+    <Nav/>
+    <Button style={buttonStyle} onClick={() => this.purchase()}>Buy our collection!</Button>
+    </header>
+    <div>
+    <Switch>
+      <Route exact path='/' render={() =>< AleList aleTotal = {this.state.masterAleList} />}/>
+      <Route component={Error404} />
+    </Switch>
+    </div>
     </div>
   );
+}
 }
 
 export default App;
